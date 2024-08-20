@@ -59,38 +59,38 @@ class Server:
             return []
         return data_set[n_index_range[0]: n_index_range[1]]
     
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
-        """
-        Get a dictionary containing hypermedia pagination details.
+    # def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
+    #     """
+    #     Get a dictionary containing hypermedia pagination details.
         
-        :param page: page number (1-indexed)
-        :param page_size: number of items per page
-        :return: dictionary with pagination details
-        """
-        data = self.get_page(page, page_size)
-        total_items = len(self.dataset())
-        total_pages = math.ceil(total_items / page_size)
+    #     :param page: page number (1-indexed)
+    #     :param page_size: number of items per page
+    #     :return: dictionary with pagination details
+    #     """
+    #     data = self.get_page(page, page_size)
+    #     total_items = len(self.dataset())
+    #     total_pages = math.ceil(total_items / page_size)
 
-        return {
-            "page_size": len(data),
-            "page": page,
-            "data": data,
-            "next_page": page + 1 if page < total_pages else None,
-            "prev_page": page - 1 if page > 1 else None,
-            "total_pages": total_pages
-        }
-    # def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
-    #     dataset = self.dataset()
-    #     total_item = len(dataset)
-    #     total_page = math.ceil(len(dataset) / page_size)
-    #     # start_index = (page - 1) * page_size
-    #     # end_index = start_index + page_size
-    #     page_data = self.get_page(page, page_size)
     #     return {
-    #         'page_size' : len(page_data),
-    #         'page' : page,
-    #         'data' : page_data,
-    #         'next_page' : page + 1 if page < total_page else None,
-    #         'prev_page' : page - 1 if page > 1 else None,
-    #         'total_page' : total_page
+    #         "page_size": len(data),
+    #         "page": page,
+    #         "data": data,
+    #         "next_page": page + 1 if page < total_pages else None,
+    #         "prev_page": page - 1 if page > 1 else None,
+    #         "total_pages": total_pages
     #     }
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
+        dataset = self.dataset()
+        total_item = len(dataset)
+        total_page = math.ceil(len(dataset) / page_size)
+        # start_index = (page - 1) * page_size
+        # end_index = start_index + page_size
+        page_data = self.get_page(page, page_size)
+        return {
+            'page_size' : len(page_data),
+            'page' : page,
+            'data' : page_data,
+            'next_page' : page + 1 if page < total_page else None,
+            'prev_page' : page - 1 if page > 1 else None,
+            'total_page' : total_page
+        }
