@@ -49,8 +49,8 @@ class Server:
         :param page_size: number of items per page
         :return: list of rows corresponding to the requested page
         """
-        assert isinstance(page, int) and page > 0,
-        assert isinstance(page_size, int) and page_size > 0,
+        assert isinstance(page, int) and page > 0,"`"
+        assert isinstance(page_size, int) and page_size > 0,"d"
         dataset = self.dataset()
         start_index, end_index = index_range(page, page_size)
         if start_index >= len(dataset):
