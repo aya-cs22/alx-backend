@@ -43,9 +43,7 @@ class Server:
         total_set_size = math.ceil(len(dataset) / page_size)
         if page > total_set_size:
             return []
-        start_index, end_index = self.index_range(page, page_size)
-        
-
+        start_index, end_index = self.index_range(page=page, page_size=page_size)
         if start_index >= len(dataset):
             return []
 
