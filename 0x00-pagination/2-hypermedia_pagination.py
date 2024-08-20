@@ -83,14 +83,20 @@ class Server:
         dataset = self.dataset()
         total_item = len(dataset)
         total_page = math.ceil(len(dataset) / page_size)
-        # start_index = (page - 1) * page_size
-        # end_index = start_index + page_size
         page_data = self.get_page(page, page_size)
+        # return {
+        #     'page_size' : len(page_data),
+        #     'page' : page,
+        #     'data' : page_data,
+        #     'next_page' : page + 1 if page < total_page else None,
+        #     'prev_page' : page - 1 if page > 1 else None,
+        #     'total_page' : total_page
+        # }
         return {
-            'page_size' : len(page_data),
-            'page' : page,
-            'data' : page_data,
-            'next_page' : page + 1 if page < total_page else None,
-            'prev_page' : page - 1 if page > 1 else None,
-            'total_page' : total_page
-        }
+        'page_size': len(page_data),           # Returns the length of the page data
+        'page': page,                          # The current page number
+        'data': page_data,                     # The actual page data
+        'next_page': page + 1 if page < total_page else None,  # Next page or None
+        'prev_page': page - 1 if page > 1 else None,           # Previous page or None
+        'total_pages': total_page              # Total number of pages (corrected key name)
+    }
