@@ -6,7 +6,12 @@ import csv
 import math
 from typing import List, Tuple
 
-
+def index_range(page: int, page_size: int) -> tuple:
+    """return a tuple of size two containing
+    a start index and an end index"""
+    start_index = page_size * (page - 1)
+    end_index = page_size + start_index
+    return (start_index, end_index)
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -26,25 +31,38 @@ class Server:
 
         return self.__dataset
 
-    @staticmethod
-    def index_range(page: int, page_size: int) -> tuple:
-        """return a tuple of size two containing
-        a start index and an end index"""
-        start_index = page_size * (page - 1)
-        end_index = page_size + start_index
-        return (start_index, end_index)
+    # @staticmethod
+    # def index_range(page: int, page_size: int) -> tuple:
+    #     """return a tuple of size two containing
+    #     a start index and an end index"""
+    #     start_index = page_size * (page - 1)
+    #     end_index = page_size + start_index
+    #     return (start_index, end_index)
 
+    # def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    #     assert isinstance(page, int) and page > 0
+    #     assert isinstance(page_size, int) and page_size > 0
+    #     dataset = self.dataset()
+    #     total_size_page = math.ceil(len(dataset) / page_size)
+    #     if page > total_size_page:
+    #         return []
+    #     start_index, end_index = self.index_range(page, page_size)
+    #     if start_index >= len(dataset):
+    #         return []
+    #     return dataset[start_index:end_index]
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        assert isinstance(page, int) and page > 0
-        assert isinstance(page_size, int) and page_size > 0
-        dataset = self.dataset()
-        total_size_page = math.ceil(len(dataset) / page_size)
-        if page > total_size_page:
+        '''
+        Retrieve a specific page of data.
+        '''
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
+        data_set = self.dataset()
+        total_set_size = math.ceil(len(data_set) / page_size)
+
+        n_index_range = index_range(page=page, page_size=page_size)
+        if page > total_set_size:
             return []
-        start_index, end_index = self.index_range(page, page_size)
-        if start_index >= len(dataset):
-            return []
-        return dataset[start_index:end_index]
+        return data_set[n_index_range[0]: n_index_range[1]]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         dataset = self.dataset()
@@ -52,7 +70,7 @@ class Server:
         total_page = (total_item + page_size - 1)
         start_index = (page - 1) * page_size
         end_index = start_index + page_size
-        page_data = self.get_page(page=page, page_size=page_size)
+        page_data = self.get_page(page, page_size)
         return {
             'page_size' : page_size,
             'page' : page,
