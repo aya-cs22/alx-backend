@@ -45,6 +45,7 @@ class Server:
         if start_index >= len(dataset):
             return []
         return dataset[start_index:end_index]
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         '''
         Retrieve a specific page of data.
@@ -58,28 +59,9 @@ class Server:
         if page > total_set_size:
             return []
         return data_set[n_index_range[0]: n_index_range[1]]
-    
-    # def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
-    #     """
-    #     Get a dictionary containing hypermedia pagination details.
-        
-    #     :param page: page number (1-indexed)
-    #     :param page_size: number of items per page
-    #     :return: dictionary with pagination details
-    #     """
-    #     data = self.get_page(page, page_size)
-    #     total_items = len(self.dataset())
-    #     total_pages = math.ceil(total_items / page_size)
 
-    #     return {
-    #         "page_size": len(data),
-    #         "page": page,
-    #         "data": data,
-    #         "next_page": page + 1 if page < total_pages else None,
-    #         "prev_page": page - 1 if page > 1 else None,
-    #         "total_pages": total_pages
-    #     }
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+        """returns a dictionary containing the following key-value pairs"""
         dataset = self.dataset()
         total_item = len(dataset)
         total_page = math.ceil(total_item / page_size)
