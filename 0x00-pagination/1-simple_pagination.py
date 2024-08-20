@@ -34,15 +34,18 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Return a page of the dataset"""
-        assert type(page) is int and page > 0
-        assert type(page_size) is int and page_size > 0
-        data_set = self.dataset()
-        total_set_size = math.ceil(len(data_set) / page_size)
+        dataset = self.dataset()
 
-        n_index_range = index_range(page=page, page_size=page_size)
-        if page > total_set_size:
+        assert isinstance(page, int)
+        assert isinstance(page_size, int)
+
+        assert page > 0
+        assert page_size > 0
+        try:
+            indexing = index_range(page, page_size)
+            return dataset[indexing[0]:indexing[1]]
+        except IndexException as e:
             return []
-        return data_set[n_index_range[0]: n_index_range[1]]
 
     # def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
     #     if (page > page_size):
