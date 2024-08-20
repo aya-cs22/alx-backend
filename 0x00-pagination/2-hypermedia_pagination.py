@@ -52,7 +52,7 @@ class Server:
         total_page = (total_item + page_size - 1)
         start_index = (page - 1) * page_size
         end_index = start_index + page_size
-        page_data = dataset[start_index:end_index]
+        page_data = self.get_page(page=page, page_size=page_size)
         return {
             'page_size' : page_size,
             'page' : page,
