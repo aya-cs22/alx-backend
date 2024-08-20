@@ -6,7 +6,7 @@ import csv
 import math
 from typing import List, Tuple
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
+def index_range(page: int, page_size: int) -> tuple:
     """return a tuple of size two containing
     a start index and an end index"""
     start_index = page_size * (page - 1)
@@ -37,7 +37,7 @@ class Server:
             return []
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-        start_index, end_index = index_range(page, page_size)
+        start_index, end_index = self.index_range(page, page_size)
         dataset = self.dataset()
 
         # If the start index is out of range, return an empty list
