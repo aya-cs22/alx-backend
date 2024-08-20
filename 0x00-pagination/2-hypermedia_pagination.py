@@ -4,7 +4,7 @@
 
 import csv
 import math
-from typing import List, Dict, Any
+from typing import List, Dict, Optional, Any
 
 
 class Server:
