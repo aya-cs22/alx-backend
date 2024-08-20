@@ -82,8 +82,9 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
         dataset = self.dataset()
         total_item = len(dataset)
-        total_page = math.ceil(len(dataset) / page_size)
+        total_page = math.ceil(total_item / page_size)
         page_data = self.get_page(page, page_size)
+
         return {
             'page_size': len(page_data),
             'page': page,
