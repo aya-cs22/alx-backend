@@ -6,7 +6,13 @@ import csv
 import math
 from typing import List
 
-
+def index_range(page, page_size):
+        """return a tuple of size two containing
+        a start index and an end index"""
+        start_index = page_size * (page - 1)
+        end_index = page_size + start_index
+        return (start_index, end_index)
+    
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -26,13 +32,6 @@ class Server:
 
         return self.__dataset
 
-    def index_range(page, page_size):
-        """return a tuple of size two containing
-        a start index and an end index"""
-        start_index = page_size * (page - 1)
-        end_index = page_size + start_index
-        return (start_index, end_index)
-    
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Return a page of the dataset"""
         assert isinstance(page, int) and page > 0, "Page must be an integer greater than 0"
