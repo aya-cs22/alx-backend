@@ -32,13 +32,26 @@ class Server:
         start_index = page_size * (page - 1)
         end_index = page_size + start_index
         return (start_index, end_index)
-
+    
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        if (page > page_size):
-            return []
-        assert isinstance(page, int) and page > 0
-        assert isinstance(page_size, int) and page_size > 0
+        """Return a page of the dataset"""
+        assert isinstance(page, int) and page > 0, "Page must be an integer greater than 0"
+        assert isinstance(page_size, int) and page > 0, "Page size must be an integer greater than 0"
+
         start_index, end_index = index_range(page, page_size)
-        if start_index > len(data):
+        dataset = self.dataset()
+
+        if start_index >= len(dataset):
             return []
-        return data[start_index:end_index]
+
+        return dataset[start_index:end_index]
+
+    # def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    #     if (page > page_size):
+    #         return []
+    #     assert isinstance(page, int) and page > 0
+    #     assert isinstance(page_size, int) and page_size > 0
+    #     start_index, end_index = index_range(page, page_size)
+    #     if start_index > len(dataset):
+    #         return []
+    #     return dataset[start_index:end_index]
