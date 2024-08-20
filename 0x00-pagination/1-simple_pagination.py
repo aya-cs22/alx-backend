@@ -26,7 +26,7 @@ class Server:
 
         return self.__dataset
 
-    def index_range(self, page, page_size):
+    def index_range(page, page_size):
         """return a tuple of size two containing
         a start index and an end index"""
         start_index = page_size * (page - 1)
@@ -34,8 +34,11 @@ class Server:
         return (start_index, end_index)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            if (page > len(page) or len(page_size)):
-                return []
-            assert isinstance(page, int) and page > 0
-            assert isinstance(page_size, int) and page_size > 0
-            return self.index_range(page, page_size)
+        if (page > page_size):
+            return []
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
+        start_index, end_index = index_range(page, page_size)
+        if start_index > len(data):
+            return []
+        return data[start_index:end_index]
