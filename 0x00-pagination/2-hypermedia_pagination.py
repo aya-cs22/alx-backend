@@ -4,7 +4,7 @@
 
 import csv
 import math
-from typing import List, Tuple, Dict, Union, Optional
+from typing import List, Dict, Any
 
 
 class Server:
@@ -79,7 +79,7 @@ class Server:
     #         "prev_page": page - 1 if page > 1 else None,
     #         "total_pages": total_pages
     #     }
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Optional[int]]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
         dataset = self.dataset()
         total_item = len(dataset)
         total_page = math.ceil(total_item / page_size)
