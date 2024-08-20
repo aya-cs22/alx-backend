@@ -7,12 +7,12 @@ import math
 from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> tuple:
-        """return a tuple of size two containing
-        a start index and an end index"""
-        start_index = page_size * (page - 1)
-        end_index = page_size + start_index
-        return (start_index, end_index)
+# def index_range(page: int, page_size: int) -> tuple:
+#         """return a tuple of size two containing
+#         a start index and an end index"""
+#         start_index = page_size * (page - 1)
+#         end_index = page_size + start_index
+#         return (start_index, end_index)
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -33,13 +33,13 @@ class Server:
 
         return self.__dataset
 
-    # @staticmethod
-    # def index_range(page: int, page_size: int) -> tuple:
-    #     """return a tuple of size two containing
-    #     a start index and an end index"""
-    #     start_index = page_size * (page - 1)
-    #     end_index = page_size + start_index
-    #     return (start_index, end_index)
+    @staticmethod
+    def index_range(page: int, page_size: int) -> tuple:
+        """return a tuple of size two containing
+        a start index and an end index"""
+        start_index = page_size * (page - 1)
+        end_index = page_size + start_index
+        return (start_index, end_index)
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
@@ -52,7 +52,7 @@ class Server:
         assert isinstance(page, int) and page > 0,"`"
         assert isinstance(page_size, int) and page_size > 0,"d"
         dataset = self.dataset()
-        start_index, end_index = index_range(page, page_size)
+        start_index, end_index = self.index_range(page, page_size)
         if start_index >= len(dataset):
             return []
         return dataset[start_index:end_index]
