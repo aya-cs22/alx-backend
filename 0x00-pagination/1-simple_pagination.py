@@ -41,19 +41,6 @@ class Server:
     #     end_index = page_size + start_index
     #     return (start_index, end_index)
 
-    # def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-    #     if (page > page_size):
-    #         return []
-    #     assert isinstance(page, int) and page > 0
-    #     assert isinstance(page_size, int) and page_size > 0
-    #     dataset = self.dataset()
-    #     total_size_page = math.ceil(len(dataset) / page_size)
-    #     if page > total_size_page:
-    #         return []
-    #     start_index, end_index = self.index_range(page, page_size)
-    #     if start_index >= len(dataset):
-    #         return []
-    #     return dataset[start_index:end_index]
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """
         Get a page from the dataset.
@@ -62,14 +49,29 @@ class Server:
         :param page_size: number of items per page
         :return: list of rows corresponding to the requested page
         """
-        assert isinstance(page, int) and page > 0, "page must be a positive integer"
-        assert isinstance(page_size, int) and page_size > 0, "page_size must be a positive integer"
-
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
         dataset = self.dataset()
-        start_index, end_index = index_range(page, page_size)
-
-        # If the start_index is out of range, return an empty list
+        start_index, end_index = self.index_range(page, page_size)
         if start_index >= len(dataset):
             return []
-
         return dataset[start_index:end_index]
+    # def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+    #     """
+    #     Get a page from the dataset.
+        
+    #     :param page: page number (1-indexed)
+    #     :param page_size: number of items per page
+    #     :return: list of rows corresponding to the requested page
+    #     """
+    #     assert isinstance(page, int) and page > 0, "page must be a positive integer"
+    #     assert isinstance(page_size, int) and page_size > 0, "page_size must be a positive integer"
+
+    #     dataset = self.dataset()
+    #     start_index, end_index = index_range(page, page_size)
+
+    #     # If the start_index is out of range, return an empty list
+    #     if start_index >= len(dataset):
+    #         return []
+
+    #     return dataset[start_index:end_index]
