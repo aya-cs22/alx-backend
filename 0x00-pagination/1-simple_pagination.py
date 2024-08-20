@@ -6,12 +6,12 @@ import csv
 import math
 from typing import List
 
-def index_range(page, page_size):
-        """return a tuple of size two containing
-        a start index and an end index"""
-        start_index = page_size * (page - 1)
-        end_index = page_size + start_index
-        return (start_index, end_index)
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """return a tuple of size two containing
+    a start index and an end index"""
+    start_index = page_size * (page - 1)
+    end_index = page_size + start_index
+    return (start_index, end_index)
     
 class Server:
     """Server class to paginate a database of popular baby names.
