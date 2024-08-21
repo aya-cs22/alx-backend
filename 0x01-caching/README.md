@@ -12,11 +12,12 @@ To understand the concepts covered in this project, you may refer to the followi
 
 - [Cache replacement policies - LIFO ](https://en.wikipedia.org/wiki/Cache_replacement_policies#Last_In_First_Out_%28LIFO%29)
 
-- [Cache replacement policies - LRU](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_Recently_Used_%28LRU%29)
+- [Cache replacement policies - LRU ](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_Recently_Used_%28LRU%29)
 
-- [Cache replacement policies - MRU] (https://en.wikipedia.org/wiki/Cache_replacement_policies#Most_Recently_Used_%28MRU%29)
+- [Cache replacement policies - MRU ](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_Recently_Used_%28LRU%29)
 
-- [Cache replacement policies - LFU] (https://en.wikipedia.org/wiki/Cache_replacement_policies#Least-Frequently_Used_%28LFU%29)
+- [Cache replacement policies - LFU ](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least-Frequently_Used_%28LFU%29)
+
 
 
 ## Learning Objectives
