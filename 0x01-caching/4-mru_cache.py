@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""LIFO caching system"""
+"""MRU Caching system"""
 BaseCaching = __import__('base_caching').BaseCaching
 
 
@@ -26,4 +26,8 @@ class MRUCache(BaseCaching):
 
     def get(self, key):
         """Get an item from the cache"""
-        return self.cache_data.get(key) if key is not None else None
+        if key is None or key not in self.cache_data:
+            return None
+        self.order.remove(key)
+        self.order.append(key)
+        return self.cache_data[key]
