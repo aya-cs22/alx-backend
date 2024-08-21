@@ -1,42 +1,29 @@
 #!/usr/bin/python3
-"""MRU Caching"""
-from collections import OrderedDict
+"""LIFO caching system"""
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-
 class MRUCache(BaseCaching):
-    """d"""
+    """LIFOCache inherits from BaseCaching ,implements a LIFO caching system"""
     def __init__(self):
-        """d"""
+        """Initialize the class"""
         super().__init__()
-        self.mru_key = None
-        self.cache_order = [] 
+        self.order = []
 
     def put(self, key, item):
-        """d"""
-        if key is None or item is None:
-            return
+        """Add an item in the cache"""
+        if key is not None and item is not None:
+            if key in self.cache_data:
+                # Remove the key if it's already in cache
+                self.order.remove(key)
+            self.order.append(key)
+            self.cache_data[key] = item
 
-        self.cache_data[key] = item
-
-        if key in self.cache_order:
-            self.cache_order.remove(key)
-        
-        self.cache_order.append(key)  
-
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            self.mru_key = self.cache_order.pop(-2) 
-            del self.cache_data[self.mru_key]
-            print(f"DISCARD: {self.mru_key}")
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                last_key = self.order.pop(-2)
+                del self.cache_data[last_key]
+                print(f"DISCARD: {last_key}")
 
     def get(self, key):
-        """d"""
-        if key is None or key not in self.cache_data:
-            return None
-
-        if key in self.cache_order:
-            self.cache_order.remove(key)
-        self.cache_order.append(key)
-
-        return self.cache_data[key]
+        """Get an item from the cache"""
+        return self.cache_data.get(key) if key is not None else None
