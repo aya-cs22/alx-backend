@@ -8,7 +8,7 @@ This project focuses on implementing pagination techniques to efficiently handle
 
 ## 0x01 - Caching
 
-content
+In this project, you will explore various caching algorithms to understand their principles and applications. Caching systems are vital for improving performance and efficiency in computing systems by storing frequently accessed data.
 
 ## 0x02 - Internationalization (i18n)
 
