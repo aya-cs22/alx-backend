@@ -3,7 +3,7 @@
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """ inherits from BaseCaching and is a caching system"""
     def __init__(self):
         """Initialize the class"""
