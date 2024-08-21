@@ -19,7 +19,7 @@ class LRUCache(BaseCaching):
                 self.cache_data.move_to_end(key)
             self.cache_data[key] = item
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-                oldest_key = self.cache_data.popitem(last=False)
+                oldest_key, _ = self.cache_data.popitem(last=False)
                 print(f"DISCARD: {oldest_key}")
 
     def get(self, key):
