@@ -6,12 +6,15 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class MRUCache(BaseCaching):
+    """d"""
     def __init__(self):
+        """d"""
         super().__init__()
         self.mru_key = None
         self.cache_order = [] 
 
     def put(self, key, item):
+        """d"""
         if key is None or item is None:
             return
 
@@ -28,6 +31,7 @@ class MRUCache(BaseCaching):
             print(f"DISCARD: {self.mru_key}")
 
     def get(self, key):
+        """d"""
         if key is None or key not in self.cache_data:
             return None
 
