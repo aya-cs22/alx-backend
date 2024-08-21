@@ -22,7 +22,7 @@ class LRUCache(BaseCaching):
 
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
                 # Remove the least recently used item (the first item in the OrderedDict)
-                lru_key, _ = self.cache_data.popitem(last=False)
+                lru_key, _ = self.cache_data.pop(0)
                 print(f"DISCARD: {lru_key}")
 
     def get(self, key):
