@@ -12,7 +12,9 @@ In this project, you will explore various caching algorithms to understand their
 
 ## 0x02 - Internationalization (i18n)
 
-content
+This project focuses on internationalization (i18n) within a Flask application. You'll learn how to manage multiple languages in your web application by parametrizing templates, inferring locales, and localizing timestamps.
+
+
 
 ## 0x03 - Queuing System in JavaScript
 
