@@ -17,10 +17,10 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-@app.route('/')
+@app.route("/")
 def index():
     """html"""
     return render_template('2-index.html')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
