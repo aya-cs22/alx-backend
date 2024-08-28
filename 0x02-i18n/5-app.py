@@ -3,10 +3,12 @@ from flask_babelex import Babel
 
 app = Flask(__name__)
 
+
 class Config:
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
+
 
 app.config.from_object(Config)
 babel = Babel(app)
@@ -30,20 +32,24 @@ def get_user():
 
 @app.before_request
 def before_request():
+    """before_request"""
     g.user = get_user()
+
 
 @babel.localeselector
 def get_locale():
+    """get local"""
     local = request.args.get('locale')
     if local in app.config['LANGUAGES']:
         return local
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
-@app.route('/')
+
+@app.route("/")
 def index():
     """html"""
     return render_template('5-index.html')
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
 
+if __name__ == "__main__":
+    app.run()
