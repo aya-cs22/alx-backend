@@ -16,8 +16,9 @@ def hello():
     return render_template('0-index.html')
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run()
+
 
 # #!/usr/bin/env python3
 # '''Task 0: Basic Flask app'''
